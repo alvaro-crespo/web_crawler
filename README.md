@@ -1,8 +1,6 @@
-# Contact
-Alvaro Crespo
-alvarocrespo.se@gmail.com
-
 # Web Crawler
+
+**Author:** Alvaro Crespo — alvarocrespo.se@gmail.com
 
 A simple async web crawler that traverses all pages within a single subdomain.
 
@@ -48,9 +46,9 @@ Via command-line from project root:
 ```bash
 python main.py <START_URL> [--workers N]
 # General case: default number of workers 10
-python crawler.py https://crawlme.monzo.com/
+python main.py https://crawlme.monzo.com/
 # Example with more concurrent workers
-python crawler.py https://crawlme.monzo.com/ --workers 20
+python main.py https://crawlme.monzo.com/ --workers 20
 ```
 
 ## Behaviour and Design
@@ -68,14 +66,14 @@ Encapsulated in `URLHandler` class (`url_handler.py`):
 - Normalization: 
     - resolves relative paths against base URL.
     - remove fragments to avoid duplicate visits.
-    - lower-cases the hostaname.
+    - lower-cases the hostname.
 - Filtering:
     - only allows URLs on the same domain as the starting URL.
     - only allows `http` and `https` schemes.
     - only allows `.html` or `.php` file types.
 
 ### Crawl strategy
-- Uses a queue BFS (breath first search): 
+- Uses a BFS queue: 
     - first discovered URLs are processed first.
     - gives more even coverage across the site rather than going deep down a path.
 - Uses a set for visited duplication checks `O(1)`.
@@ -107,12 +105,12 @@ coverage report -m
 
 ## Trade-offs, limitations and future improvements
 
-Within this ~4hr project there were a few trade offs, and some areas of future improvements:
+Within this ~4hr scope there were a few trade offs, and some areas of future improvements:
 
 - Async vs sync: 
     - asynchronous I/O is more efficient than sequential requests, at the cost of more complex code.
 - Memory vs disk:
-    - The visited set of URLs and queue ones are stored in memory. This is simpler and faster, but has limits when scaling.
+    - The visited set of URLs and queued ones are stored in memory. This is simpler and faster, but has limits when scaling.
     - An improvement could be persisting results to a database for very large crawls.
 - Best practices:
     - Add rate limiting to be respectful for servers, as of now the crawler sends requests as quickly as a worker is available.
