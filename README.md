@@ -107,7 +107,7 @@ coverage report -m
 
 ## Trade-offs, limitations and future improvements
 
-Within this ~4 project there were a few trade offs, and some areas of future improvements:
+Within this ~4hr project there were a few trade offs, and some areas of future improvements:
 
 - Async vs sync: asynchronous I/O is more efficient than sequential requests, at the cost of more complex code.
 - Memory vs disk:
