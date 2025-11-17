@@ -28,6 +28,8 @@ async def main():
         help="Number of concurrent workers (default: 10)",
     )
     args = parser.parse_args()
+    if args.workers < 1:
+        parser.error("Number of workers must be at least 1")
     start_time = time.monotonic()
     # Initialize crawler
     try:

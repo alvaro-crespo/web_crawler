@@ -77,7 +77,7 @@ Encapsulated in `URLHandler` class (`url_handler.py`):
 - Uses a BFS queue: 
     - first discovered URLs are processed first.
     - gives more even coverage across the site rather than going deep down a path.
-- Uses a set for visited duplication checks `O(1)`.
+- Uses a set to detect already-visited URLs (`O(1)` look ups).
 
 ### Error Handling
 - Individual page failures do not stop the entire craw process. Exceptions (e.g. timeouts) are caught and logged.
