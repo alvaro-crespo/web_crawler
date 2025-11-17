@@ -25,9 +25,10 @@ Follows a modular layout with the Crawler and URL handler separated, plus their 
 │   ├── crawler.py        # WebCrawler implementation
 │   ├── url_handler.py    # URLHandler with normalization and filtering
 │   └── tests
-│       ├── test_crawler.py 
+│       ├── test_crawler.py
 │       └── test_url_handler.py
 ├── main.py               # CLI entrypoint
+├── pytest.ini            # Pytest configuration
 ├── requirements.txt      # Dependencies
 └── README.md
 ```
