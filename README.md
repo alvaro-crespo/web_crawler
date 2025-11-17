@@ -11,7 +11,7 @@ Given a starting URL, the crawler:
 
 ## Features
 - Asynchronous crawling using asyncio and aiohttp for concurrent page fetching.
-- Subdomain scoped, never follows external links (e.g. from `crawlme.monzo.com` to `facebook.com`)
+- Subdomain scoped, never follows external links (e.g. from `crawlme.monzo.com` to `facebook.com`).
 - Keeps track of visited URLs to avoid duplicates.
 - URL normalization and filtering encapsulated.
 
