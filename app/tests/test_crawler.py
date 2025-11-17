@@ -41,12 +41,12 @@ class TestWebCrawler:
         """HTML content is properly retrieved from page."""
         crawler = WebCrawler("https://monzo.com")
         crawler.session = MagicMock()
-        mock_response = AsyncMock()
-        mock_response.headers = {"Content-Type": "text/html; charset=utf-8"}
-        mock_response.text = AsyncMock(return_value="<html><body>Test</body></html>")
-        mock_response.raise_for_status = MagicMock()
+        mock_resp = AsyncMock()
+        mock_resp.headers = {"Content-Type": "text/html; charset=utf-8"}
+        mock_resp.text = AsyncMock(return_value="<html><body>Test</body></html>")
+        mock_resp.raise_for_status = MagicMock()
 
-        crawler.session.get.return_value.__aenter__.return_value = mock_response
+        crawler.session.get.return_value.__aenter__.return_value = mock_resp
         crawler.session.get.return_value.__aexit__.return_value = None
 
         html = await crawler.fetch_page("https://monzo.com")
@@ -58,12 +58,12 @@ class TestWebCrawler:
         """Non html page is filtered ahead of processing."""
         crawler = WebCrawler("https://monzo.com")
         crawler.session = MagicMock()
-        mock_response = AsyncMock()
-        mock_response.headers = {"Content-Type": "image/png"}
-        mock_response.text = AsyncMock(return_value="png image")
-        mock_response.raise_for_status = MagicMock()
+        mock_resp = AsyncMock()
+        mock_resp.headers = {"Content-Type": "image/png"}
+        mock_resp.text = AsyncMock(return_value="png image")
+        mock_resp.raise_for_status = MagicMock()
 
-        crawler.session.get.return_value.__aenter__.return_value = mock_response
+        crawler.session.get.return_value.__aenter__.return_value = mock_resp
         crawler.session.get.return_value.__aexit__.return_value = None
 
         html = await crawler.fetch_page("https://monzo.com/image.png")
@@ -107,7 +107,7 @@ class TestWebCrawler:
 
         visited_link = "https://monzo.com/visited"
         crawler.visited.add(visited_link)
-        mock_html = f'<html><body><a href="{visited_link}">Link</a></body></html>'
+        mock_html = f'<a href="{visited_link}">Link</a>'
 
         with patch.object(crawler, "fetch_page", new_callable=AsyncMock) as mock_fetch:
             mock_fetch.return_value = mock_html

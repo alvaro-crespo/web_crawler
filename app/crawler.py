@@ -56,7 +56,7 @@ class WebCrawler:
         except asyncio.TimeoutError:
             logger.warning(f"Timeout fetching {url}")
             return None
-        except Exception as e:
+        except Exception:
             logger.error(f"Error fetching {url}")
             return None
 
@@ -121,7 +121,8 @@ class WebCrawler:
         Start web crawling.
         """
         print(
-            f"Starting crawl of {self.start_url} with {self.max_workers} concurrent workers"
+            f"Starting crawl of {self.start_url} with {self.max_workers}"
+            f" concurrent workers"
         )
 
         # Normalize starting URL

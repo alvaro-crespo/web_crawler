@@ -35,7 +35,8 @@ class TestURLHandler:
         assert handler.normalize_url("#fragment") is None
 
     def test_is_allowed_filters(self):
-        """Filters for domain, scheme and file types are applied in is_allowed method."""
+        """Filters for domain, scheme and file types are applied
+        in is_allowed method."""
         handler = URLHandler("https://monzo.com")
 
         # Allow: same domain, http/https, extensions
