@@ -109,7 +109,8 @@ coverage report -m
 
 Within this ~4hr project there were a few trade offs, and some areas of future improvements:
 
-- Async vs sync: asynchronous I/O is more efficient than sequential requests, at the cost of more complex code.
+- Async vs sync: 
+    - asynchronous I/O is more efficient than sequential requests, at the cost of more complex code.
 - Memory vs disk:
     - The visited set of URLs and queue ones are stored in memory. This is simpler and faster, but has limits when scaling.
     - An improvement could be persisting results to a database for very large crawls.
