@@ -11,7 +11,7 @@ Given a starting URL, the crawler:
 
 ## Features
 - Asynchronous crawling using asyncio and aiohttp for concurrent page fetching.
-- Subdomain scoped, never follows external links (e.g. from `crawlme.monzo.com` to `facebook.com`).
+- Subdomain scoped, never follows external links (e.g. from `crawler-test.com` to `facebook.com`).
 - Keeps track of visited URLs to avoid duplicates.
 - URL normalization and filtering encapsulated.
 
@@ -47,9 +47,9 @@ Via command-line from project root:
 ```bash
 python main.py <START_URL> [--workers N]
 # General case: default number of workers 10
-python main.py https://crawlme.monzo.com/
+python main.py https://crawler-test.com/
 # Example with more concurrent workers
-python main.py https://crawlme.monzo.com/ --workers 20
+python main.py https://crawler-test.com/ --workers 20
 ```
 
 ## Behaviour and Design
