@@ -34,7 +34,7 @@ Follows a modular layout with the Crawler and URL handler separated, plus their 
 ```
 
 ## Installation
-
+Create a virtual environment, activate it and install dependencies:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
