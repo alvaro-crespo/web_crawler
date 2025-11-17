@@ -57,28 +57,28 @@ python crawler.py https://crawlme.monzo.com/ --workers 20
 
 ### Async Architecture
 - Use of `asyncio` with `aiohttp` for concurrent crawling to avoid I/O blocking.
-- Fixed number of workers coroutines (--workers):
-    - each worker pulls URLs from an asyncio.Queue (FIFO).
-    - calls process_url() -> fetch_page() -> extract_links().
+- Fixed number of workers coroutines (`--workers`):
+    - each worker pulls URLs from an `asyncio.Queue` (FIFO).
+    - calls `process_url()` -> `fetch_page()` -> `extract_links()`.
     - enqueues new links back into the queue.
 - This gives an explicit approach to concurrency without external frameworks.
 
 ### URL handling 
-Encapsulated in URLHandler class (url_handler.py):
+Encapsulated in `URLHandler` class (`url_handler.py`):
 - Normalization: 
     - resolves relative paths against base URL.
     - remove fragments to avoid duplicate visits.
     - lower-cases the hostaname.
 - Filtering:
     - only allows URLs on the same domain as the starting URL.
-    - only allows http and https schemes.
-    - only allows .html or .php file types.
+    - only allows `http` and `https` schemes.
+    - only allows `.html` or `.php` file types.
 
 ### Crawl strategy
 - Uses a queue BFS (breath first search): 
     - first discovered URLs are processed first.
     - gives more even coverage across the site rather than going deep down a path.
-- Uses a set for visited duplication checks O(1).
+- Uses a set for visited duplication checks `O(1)`.
 
 ### Error Handling
 - Individual page failures do not stop the entire craw process. Exceptions (e.g. timeouts) are caught and logged.
@@ -86,10 +86,10 @@ Encapsulated in URLHandler class (url_handler.py):
 
 
 ## Dependencies
-Listed in the 'requirements.txt' file:
-- aiohttp: async HTTP client.
-- beautifulsoup4: HTML parser.
-- pytest and pytest-asyncio: test suite.
+Listed in the `requirements.txt` file:
+- `aiohttp`: async HTTP client.
+- `beautifulsoup4`: HTML parser.
+- `pytest` and `pytest-asyncio`: test suite.
 
 
 ## Testing
