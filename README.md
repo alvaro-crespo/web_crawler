@@ -1,7 +1,5 @@
 # Web Crawler
 
-**Author:** Alvaro Crespo — alvarocrespo.se@gmail.com
-
 A simple async web crawler that traverses all pages within a single subdomain.
 
 Given a starting URL, the crawler:
